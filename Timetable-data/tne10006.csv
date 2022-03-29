@@ -1,0 +1,7 @@
+subject, session, sessionID, time-start, time-end, place
+TNE10006, lab, 9, 8-30-mon, 11-30-mon, ATC328
+TNE10006, lab, 13, 17-30-tue, 20-30-tue, ATC329
+TNE10006, lab, 6, 11-30-wed, 14-30-wed, ATC329
+TNE10006, lab, 15, 17-30-wed, 20-30-wed, ATC328
+TNE10006, lab, 16, 17-30-thu, 20-30-thu, ATC329
+TNE10006, lecture, 1, 10-30-fri, 12-30-fri, ATC101

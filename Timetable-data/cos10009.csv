@@ -1,0 +1,13 @@
+subject, session, sessionID, time-start, time-end, place
+COS10009, lab, 28, 18-30-mon, 20-30-mon, ATC625
+COS10009, lab, 23, 8-30-tue, 10-30-tue, ATC625
+COS10009, workshop, 15, 8-30-wed, 10-30-wed, EN101
+COS10009, lab, 20, 18-30-wed, 20-30-wed, ATC625
+COS10009, lab, 28, 18-30-wed, 20-30-wed, ATC625
+COS10009, workshop, 3, 8-30-thu, 10-30-thu, EN101
+COS10009, workshop, 7, 8-30-thu, 10-30-thu, EN101
+COS10009, lab, 26, 18-30-thu, 20-30-thu, ATC625
+COS10009, lab, 13, 8-30-fri, 10-30-fri, BA603
+COS10009, lab, 16, 12-30-fri, 14-30-fri, ATC625
+COS10009, workshop, 11, 12-30-fri, 14-30-fri, EN101
+COS10009, workshop, 17, 16-30-fri, 18-30-fri, EN101
