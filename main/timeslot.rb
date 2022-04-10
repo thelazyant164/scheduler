@@ -1,5 +1,5 @@
 module Timeslot
-    def toTime(str)
+    def to_time(str)
         hour = str.split('-')[0].strip().to_i()
         min = str.split('-')[1].strip().to_i()
         begin
@@ -9,7 +9,7 @@ module Timeslot
         return {"date" => date, "hour" => hour, "min" => min}
     end
 
-    def toStr(hash)
+    def to_str(hash)
         str = " " + hash["hour"].to_s + "-" + hash["min"].to_s
         begin
             str += "-" + hash["date"]
@@ -18,11 +18,11 @@ module Timeslot
         return str
     end
 
-    def toDecimal(hash)
+    def to_decimal(hash)
         return hash["hour"] + hash["min"]/60.to_f()
     end
 
-    def toDisplay(fl)
+    def to_display(fl)
         hour = fl.floor()
         min = (fl - hour)*60
         str = hour.to_s() + ":" + min.floor().to_s()

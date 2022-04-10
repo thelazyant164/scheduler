@@ -13,7 +13,7 @@ class Scheduler
 
             # #Validate data integrity
             begin
-                unit = processUnitInfo(csv_rows)
+                unit = process_unit_info(csv_rows)
                 puts("Reading scheduling info for #{unit.subject.upcase()}...")
             rescue
                 puts('Invalid input detected. Please verify content integrity of unit info.')
@@ -41,7 +41,7 @@ class Scheduler
     end
 
     #Organize data
-    def processUnitInfo(data)
+    def process_unit_info(data)
         classes = Array.new()
         for i in 0..(data.length - 1) do
             session = Class.new(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5])
@@ -144,7 +144,7 @@ class Timetable
         @all_enrolled.each do |current_combo|
             sum_hour = 0
             current_combo.each do |a_class|
-                sum_hour += a_class.timeStart["hour"]
+                sum_hour += a_class.time_start["hour"]
             end
             @scoring_system << sum_hour
         end
@@ -156,7 +156,7 @@ class Timetable
         @all_enrolled.each do |current_combo|
             sum_hour = 0
             current_combo.each do |a_class|
-                sum_hour += a_class.timeStart["hour"]
+                sum_hour += a_class.time_start["hour"]
             end
             @scoring_system << sum_hour
         end
@@ -169,7 +169,7 @@ class Timetable
             days_at_school = 0
             hash = Hash.new()
             current_combo.each do |a_class|
-                hash[a_class.timeStart["date"]] = 1
+                hash[a_class.time_start["date"]] = 1
             end
             days_at_school = hash.length()
             @scoring_system << days_at_school
@@ -214,7 +214,7 @@ class Timetable
             def same_day_sort(day)
                 for i in 0..(day.length - 1)
                     for j in 0..(day.length - 2)
-                        if day[j].timeStart["hour"] > day[j + 1].timeStart["hour"] || (day[j].timeStart["hour"] == day[j + 1].timeStart["hour"] && day[j].timeStart["min"] > day[j + 1].timeStart["min"])
+                        if day[j].time_start["hour"] > day[j + 1].time_start["hour"] || (day[j].time_start["hour"] == day[j + 1].time_start["hour"] && day[j].time_start["min"] > day[j + 1].time_start["min"])
                             temp = day[j]
                             day[j] = day[j + 1]
                             day[j + 1] = temp
@@ -230,7 +230,7 @@ class Timetable
             thursday= Array.new()
             friday= Array.new()
             @selected.each do |a_class|
-                case a_class.timeStart["date"]
+                case a_class.time_start["date"]
                 when "mon"
                     monday << a_class
                 when "tue"
@@ -258,9 +258,9 @@ class Timetable
         file_name += ".csv"
         puts("Writing timetable to \"#{file_name}\"...")
         CSV.open(file_name, "w") do |csv|
-            csv << ["subject", " session", " sessionID", " time-start", " time-end", " place"]
+            csv << ["subject", " session", " session_ID", " time-start", " time-end", " place"]
             @selected.each do |a_class|
-                csv << [a_class.subject, a_class.session, a_class.sessionID, toStr(a_class.timeStart), toStr(a_class.timeEnd), a_class.place]
+                csv << [a_class.subject, a_class.session, a_class.session_ID, to_str(a_class.time_start), to_str(a_class.time_end), a_class.place]
             end
         end
         puts("Complete.")
@@ -325,27 +325,27 @@ end
 class Class
     include Timeslot
 
-    attr_reader :subject, :session, :sessionID, :timeStart, :timeEnd, :place
+    attr_reader :subject, :session, :session_ID, :time_start, :time_end, :place
 
-    def initialize(subject, session, sessionID, timeStart, timeEnd, place)
+    def initialize(subject, session, session_ID, time_start, time_end, place)
         @subject = subject
         @session = session
-        @sessionID = sessionID
-        @timeStart = toTime(timeStart) #Here
-        @timeEnd = toTime(timeEnd) #Here
+        @session_ID = session_ID
+        @time_start = to_time(time_start) #Here
+        @time_end = to_time(time_end) #Here
         @place = place
     end
 
     def clash?(class2)
-        if (@timeStart["date"] != class2.timeStart["date"]) && !class2.timeStart["date"].nil?
+        if (@time_start["date"] != class2.time_start["date"]) && !class2.time_start["date"].nil?
             return false
-        elsif (@timeStart["hour"] > class2.timeEnd["hour"])
+        elsif (@time_start["hour"] > class2.time_end["hour"])
             return false
-        elsif (@timeEnd["hour"] < class2.timeStart["hour"])
+        elsif (@time_end["hour"] < class2.time_start["hour"])
             return false
-        elsif (@timeStart["hour"] == class2.timeEnd["hour"]) && (@timeStart["min"] >= class2.timeEnd["min"])
+        elsif (@time_start["hour"] == class2.time_end["hour"]) && (@time_start["min"] >= class2.time_end["min"])
             return false
-        elsif (@timeEnd["hour"] == class2.timeStart["hour"]) && (@timeEnd["min"] <= class2.timeStart["min"])
+        elsif (@time_end["hour"] == class2.time_start["hour"]) && (@time_end["min"] <= class2.time_start["min"])
             return false
         else
             return true
@@ -353,6 +353,6 @@ class Class
     end
 
     def to_s()
-        return (@subject.to_s + " - " + @session.to_s + " - " + @timeStart.to_s)
+        return (@subject.to_s + " - " + @session.to_s + " - " + @time_start.to_s)
     end
 end
