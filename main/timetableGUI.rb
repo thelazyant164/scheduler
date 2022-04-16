@@ -55,33 +55,6 @@ class InputReader
   end
 end
 
-#Draw static timetable frame
-def draw_static()
-  # Draw background color
-  Gosu.draw_rect(0, 0, Dimension::WIN_WIDTH, Dimension::WIN_HEIGHT, @background, ZOrder::BACKGROUND, mode=:default)
-
-  #Draw grid for timetable
-  #Draw horizontal bars
-  Gosu.draw_quad(Dimension::COL_WIDTH*1 - Dimension::BORDER_WIDTH/2, 0, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*1 + Dimension::BORDER_WIDTH/2, 0, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*1 + Dimension::BORDER_WIDTH/2, Dimension::WIN_HEIGHT, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*1 - Dimension::BORDER_WIDTH/2, Dimension::WIN_HEIGHT, Color::COLOR_THEME_PRIMARY, ZOrder::MIDDLE, mode=:default)
-  Gosu.draw_quad(Dimension::COL_WIDTH*2 - Dimension::BORDER_WIDTH/2, 0, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*2 + Dimension::BORDER_WIDTH/2, 0, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*2 + Dimension::BORDER_WIDTH/2, Dimension::WIN_HEIGHT, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*2 - Dimension::BORDER_WIDTH/2, Dimension::WIN_HEIGHT, Color::COLOR_THEME_PRIMARY, ZOrder::MIDDLE, mode=:default)
-  Gosu.draw_quad(Dimension::COL_WIDTH*3 - Dimension::BORDER_WIDTH/2, 0, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*3 + Dimension::BORDER_WIDTH/2, 0, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*3 + Dimension::BORDER_WIDTH/2, Dimension::WIN_HEIGHT, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*3 - Dimension::BORDER_WIDTH/2, Dimension::WIN_HEIGHT, Color::COLOR_THEME_PRIMARY, ZOrder::MIDDLE, mode=:default)
-  Gosu.draw_quad(Dimension::COL_WIDTH*4 - Dimension::BORDER_WIDTH/2, 0, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*4 + Dimension::BORDER_WIDTH/2, 0, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*4 + Dimension::BORDER_WIDTH/2, Dimension::WIN_HEIGHT, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*4 - Dimension::BORDER_WIDTH/2, Dimension::WIN_HEIGHT, Color::COLOR_THEME_PRIMARY, ZOrder::MIDDLE, mode=:default)
-  Gosu.draw_quad(Dimension::COL_WIDTH*5 - Dimension::BORDER_WIDTH/2, 0, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*5 + Dimension::BORDER_WIDTH/2, 0, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*5 + Dimension::BORDER_WIDTH/2, Dimension::WIN_HEIGHT, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*5 - Dimension::BORDER_WIDTH/2, Dimension::WIN_HEIGHT, Color::COLOR_THEME_PRIMARY, ZOrder::MIDDLE, mode=:default)
-  #Draw vertical bars
-  Gosu.draw_quad(0, Dimension::ROW0_HEIGHT - Dimension::BORDER_WIDTH/2, Color::COLOR_THEME_PRIMARY, Dimension::WIN_WIDTH, Dimension::ROW0_HEIGHT - Dimension::BORDER_WIDTH/2, Color::COLOR_THEME_PRIMARY, Dimension::WIN_WIDTH, Dimension::ROW0_HEIGHT + Dimension::BORDER_WIDTH/2, Color::COLOR_THEME_PRIMARY, 0, Dimension::ROW0_HEIGHT + Dimension::BORDER_WIDTH/2, Color::COLOR_THEME_PRIMARY, ZOrder::MIDDLE, mode=:default)
-  
-  #Draw diagonal line
-  #Gosu.draw_quad(0, 0, COLOR_THEME_PRIMARY, COL_WIDTH + BORDER_WIDTH/2, 0, COLOR_THEME_SECONDARY, COL_WIDTH + BORDER_WIDTH/2, ROW0_HEIGHT + BORDER_WIDTH/2, COLOR_THEME_TERTIARY, 0, ROW0_HEIGHT + BORDER_WIDTH/2, COLOR_THEME_QUATERNARY, ZOrder::MIDDLE, mode=:default)
-
-  #Draw table headers
-  #Draw column headers
-  @font.draw_text("Monday", Dimension::COL_WIDTH*1.28, (Dimension::ROW0_HEIGHT-Dimension::TEXT_SIZE)/2, ZOrder::TOP, 1.0, 1.0, Color::COLOR_THEME_PRIMARY)
-  @font.draw_text("Tuesday", Dimension::COL_WIDTH*2.26, (Dimension::ROW0_HEIGHT-Dimension::TEXT_SIZE)/2, ZOrder::TOP, 1.0, 1.0, Color::COLOR_THEME_PRIMARY)
-  @font.draw_text("Wednesday", Dimension::COL_WIDTH*3.16, (Dimension::ROW0_HEIGHT-Dimension::TEXT_SIZE)/2, ZOrder::TOP, 1.0, 1.0, Color::COLOR_THEME_PRIMARY)
-  @font.draw_text("Thursday", Dimension::COL_WIDTH*4.24, (Dimension::ROW0_HEIGHT-Dimension::TEXT_SIZE)/2, ZOrder::TOP, 1.0, 1.0, Color::COLOR_THEME_PRIMARY)
-  @font.draw_text("Friday", Dimension::COL_WIDTH*5.34, (Dimension::ROW0_HEIGHT-Dimension::TEXT_SIZE)/2, ZOrder::TOP, 1.0, 1.0, Color::COLOR_THEME_PRIMARY)
-end
-
 
 
 class TimetableGUI < Gosu::Window
@@ -100,6 +73,33 @@ class TimetableGUI < Gosu::Window
     #List containing currently selected class
     @show_info = []
     @stick_info = []
+  end
+
+  #Draw static timetable frame
+  def draw_static()
+    # Draw background color
+    Gosu.draw_rect(0, 0, Dimension::WIN_WIDTH, Dimension::WIN_HEIGHT, @background, ZOrder::BACKGROUND, mode=:default)
+
+    #Draw grid for timetable
+    #Draw horizontal bars
+    Gosu.draw_quad(Dimension::COL_WIDTH*1 - Dimension::BORDER_WIDTH/2, 0, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*1 + Dimension::BORDER_WIDTH/2, 0, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*1 + Dimension::BORDER_WIDTH/2, Dimension::WIN_HEIGHT, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*1 - Dimension::BORDER_WIDTH/2, Dimension::WIN_HEIGHT, Color::COLOR_THEME_PRIMARY, ZOrder::MIDDLE, mode=:default)
+    Gosu.draw_quad(Dimension::COL_WIDTH*2 - Dimension::BORDER_WIDTH/2, 0, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*2 + Dimension::BORDER_WIDTH/2, 0, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*2 + Dimension::BORDER_WIDTH/2, Dimension::WIN_HEIGHT, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*2 - Dimension::BORDER_WIDTH/2, Dimension::WIN_HEIGHT, Color::COLOR_THEME_PRIMARY, ZOrder::MIDDLE, mode=:default)
+    Gosu.draw_quad(Dimension::COL_WIDTH*3 - Dimension::BORDER_WIDTH/2, 0, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*3 + Dimension::BORDER_WIDTH/2, 0, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*3 + Dimension::BORDER_WIDTH/2, Dimension::WIN_HEIGHT, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*3 - Dimension::BORDER_WIDTH/2, Dimension::WIN_HEIGHT, Color::COLOR_THEME_PRIMARY, ZOrder::MIDDLE, mode=:default)
+    Gosu.draw_quad(Dimension::COL_WIDTH*4 - Dimension::BORDER_WIDTH/2, 0, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*4 + Dimension::BORDER_WIDTH/2, 0, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*4 + Dimension::BORDER_WIDTH/2, Dimension::WIN_HEIGHT, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*4 - Dimension::BORDER_WIDTH/2, Dimension::WIN_HEIGHT, Color::COLOR_THEME_PRIMARY, ZOrder::MIDDLE, mode=:default)
+    Gosu.draw_quad(Dimension::COL_WIDTH*5 - Dimension::BORDER_WIDTH/2, 0, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*5 + Dimension::BORDER_WIDTH/2, 0, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*5 + Dimension::BORDER_WIDTH/2, Dimension::WIN_HEIGHT, Color::COLOR_THEME_PRIMARY, Dimension::COL_WIDTH*5 - Dimension::BORDER_WIDTH/2, Dimension::WIN_HEIGHT, Color::COLOR_THEME_PRIMARY, ZOrder::MIDDLE, mode=:default)
+    #Draw vertical bars
+    Gosu.draw_quad(0, Dimension::ROW0_HEIGHT - Dimension::BORDER_WIDTH/2, Color::COLOR_THEME_PRIMARY, Dimension::WIN_WIDTH, Dimension::ROW0_HEIGHT - Dimension::BORDER_WIDTH/2, Color::COLOR_THEME_PRIMARY, Dimension::WIN_WIDTH, Dimension::ROW0_HEIGHT + Dimension::BORDER_WIDTH/2, Color::COLOR_THEME_PRIMARY, 0, Dimension::ROW0_HEIGHT + Dimension::BORDER_WIDTH/2, Color::COLOR_THEME_PRIMARY, ZOrder::MIDDLE, mode=:default)
+    
+    #Draw diagonal line
+    #Gosu.draw_quad(0, 0, COLOR_THEME_PRIMARY, COL_WIDTH + BORDER_WIDTH/2, 0, COLOR_THEME_SECONDARY, COL_WIDTH + BORDER_WIDTH/2, ROW0_HEIGHT + BORDER_WIDTH/2, COLOR_THEME_TERTIARY, 0, ROW0_HEIGHT + BORDER_WIDTH/2, COLOR_THEME_QUATERNARY, ZOrder::MIDDLE, mode=:default)
+
+    #Draw table headers
+    #Draw column headers
+    @font.draw_text("Monday", Dimension::COL_WIDTH*1.28, (Dimension::ROW0_HEIGHT-Dimension::TEXT_SIZE)/2, ZOrder::TOP, 1.0, 1.0, Color::COLOR_THEME_PRIMARY)
+    @font.draw_text("Tuesday", Dimension::COL_WIDTH*2.26, (Dimension::ROW0_HEIGHT-Dimension::TEXT_SIZE)/2, ZOrder::TOP, 1.0, 1.0, Color::COLOR_THEME_PRIMARY)
+    @font.draw_text("Wednesday", Dimension::COL_WIDTH*3.16, (Dimension::ROW0_HEIGHT-Dimension::TEXT_SIZE)/2, ZOrder::TOP, 1.0, 1.0, Color::COLOR_THEME_PRIMARY)
+    @font.draw_text("Thursday", Dimension::COL_WIDTH*4.24, (Dimension::ROW0_HEIGHT-Dimension::TEXT_SIZE)/2, ZOrder::TOP, 1.0, 1.0, Color::COLOR_THEME_PRIMARY)
+    @font.draw_text("Friday", Dimension::COL_WIDTH*5.34, (Dimension::ROW0_HEIGHT-Dimension::TEXT_SIZE)/2, ZOrder::TOP, 1.0, 1.0, Color::COLOR_THEME_PRIMARY)
   end
 
   def draw()
